@@ -1,8 +1,8 @@
 
-public class ConstraintAdditionDelta extends Delta {
+public class ConstraintRemovalDelta extends Delta {
 	private Constraint constraint;
 	
-	public ConstraintAdditionDelta(Query source, Query destination, Constraint constraint) {
+	public ConstraintRemovalDelta(Query source, Query destination, Constraint constraint) {
 		super(source, destination);
 		this.constraint = constraint;
 	}
