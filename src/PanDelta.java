@@ -17,6 +17,14 @@ public class PanDelta extends Delta {
 		return change;
 	}
 	
+	public boolean equals(Object other) {
+		if (other.getClass().equals(getClass())) {
+			PanDelta opd = (PanDelta)other;
+			return opd.getDimension().equals(dimension) && opd.getChange().equals(change);
+		}
+		return  false;
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}

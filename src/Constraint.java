@@ -3,7 +3,7 @@ public class Constraint {
 	private Dimension dimension;
 	private String min;
 	private String max;
-	public static String INF = "Inf";
+	public static final String INF = "iNf";
 	
 	public Constraint(Dimension dimension, String min, String max) {
 		this.dimension = dimension;
@@ -42,4 +42,11 @@ public class Constraint {
 		return "Constraint("+dimension+",["+min+","+max+"])";
 	}
 	
+	public boolean equals(Object other) {
+		if (other.getClass().equals(getClass())) {
+			Constraint oc = (Constraint)other;
+			return oc.getDimension().equals(dimension) && oc.getMin().equals(min) && oc.getMax().equals(max);
+		}
+		return  false;
+	}
 }

@@ -11,6 +11,10 @@ public class ProjectionAdditionDelta extends Delta {
 		return dimension;
 	}
 	
+	public boolean equals(Object other) {
+		return other.getClass().equals(getClass()) && ((ProjectionAdditionDelta) other).getDimension().equals(dimension);
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}
