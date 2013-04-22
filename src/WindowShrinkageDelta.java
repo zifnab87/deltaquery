@@ -24,7 +24,7 @@ public class WindowShrinkageDelta extends Delta {
 	}
 	
 	public boolean equals(Object other) {
-		return other.getClass().equals(getClass()) && ((ConstraintRemovalDelta) other).getConstraint().equals(constraint);
+		return other.getClass().equals(getClass()) && ((WindowShrinkageDelta) other).getConstraint().equals(constraint);
 	}
 	
 	public Query apply(Query source) {
