@@ -10,8 +10,12 @@ public class Dimension {
 		return field;
 	}
 	
+
 	public String toString(){
 		return this.field;
 		
+	}
+	public boolean equals(Object other) {
+		return other.getClass().equals(getClass()) && ((Dimension) other).getField().equals(field);
 	}
 }
