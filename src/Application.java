@@ -11,7 +11,7 @@ import Zql.ZqlParser;
 public class Application {
 	
 	public static void main(String args[]) throws ParseException{
-		Query query = new Query("select * FROM sada;");
+		Query query = new Query("select a,b FROM table1 WHERE id >= 4 and id <=5;");
 		System.out.println(query.constraints);
 		System.out.println(query.projections);
 	}
