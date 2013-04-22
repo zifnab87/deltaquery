@@ -8,6 +8,7 @@ public class Query {
 	private static int idcounter=0;
 	private static int id;
 	public Set<Dimension> projections = new HashSet<Dimension>();
+	public Set<Constraint> constraints = new HashSet<Constraint>();
 	public Query(String query) {
 		super();
 		this.query = query;
@@ -32,6 +33,10 @@ public class Query {
 	
 	public void addProjection(Dimension d){
 		this.projections.add(d);
+	}
+	
+	public void addConstraints(Constraint c){
+		this.constraints.add(c);
 	}
 	
 }
