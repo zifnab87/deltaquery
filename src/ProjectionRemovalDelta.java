@@ -15,6 +15,10 @@ public class ProjectionRemovalDelta extends Delta {
 		return other.getClass().equals(getClass()) && ((ProjectionRemovalDelta) other).getDimension().equals(dimension);
 	}
 	
+	public String toString() {
+		return String.format("Remove projection %s", dimension);
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}

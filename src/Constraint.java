@@ -3,7 +3,7 @@ public class Constraint {
 	private Dimension dimension;
 	private String min;
 	private String max;
-	public static final String INF = "iNf";
+	public static final String INF = "Inf";
 	
 	public Constraint(Dimension dimension, String min, String max) {
 		this.dimension = dimension;

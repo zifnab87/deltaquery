@@ -25,6 +25,10 @@ public class PanDelta extends Delta {
 		return  false;
 	}
 	
+	public String toString() {
+		return String.format("Pan window of %s by %s", getDimension(), getChange());
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}

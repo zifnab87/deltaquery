@@ -15,6 +15,10 @@ public class ConstraintAdditionDelta extends Delta {
 		return other.getClass().equals(getClass()) && ((ConstraintAdditionDelta) other).getConstraint().equals(constraint);
 	}
 	
+	public String toString() {
+		return String.format("Add constraint %s", constraint);
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}

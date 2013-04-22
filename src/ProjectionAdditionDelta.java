@@ -15,6 +15,10 @@ public class ProjectionAdditionDelta extends Delta {
 		return other.getClass().equals(getClass()) && ((ProjectionAdditionDelta) other).getDimension().equals(dimension);
 	}
 	
+	public String toString() {
+		return String.format("Add projection %s", dimension);
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}

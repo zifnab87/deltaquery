@@ -27,6 +27,10 @@ public class WindowShrinkageDelta extends Delta {
 		return other.getClass().equals(getClass()) && ((WindowShrinkageDelta) other).getConstraint().equals(constraint);
 	}
 	
+	public String toString() {
+		return String.format("Shrink window of %s by adding %s to min and %s to max", getDimension(), getChangeInMin(), getChangeInMax());
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}
