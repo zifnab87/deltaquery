@@ -87,6 +87,9 @@ public class Query {
 			 }
 			 Vector<ZFromItem> from = q.getFrom();  // FROM part of the query
 			 ZExpression where = (ZExpression)q.getWhere();  // WHERE part of the query
+			 if (where==null){
+				 return;
+			 }
 			 for(int i=0; i< where.nbOperands(); i++){
 				 // (a >= 3 )
 				 ZExpression clause = (ZExpression) where.getOperand(i);

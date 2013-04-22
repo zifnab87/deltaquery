@@ -11,9 +11,9 @@ import Zql.ZqlParser;
 public class Application {
 	
 	public static void main(String args[]) throws ParseException{
-		Query query = new Query("select a,b,c FROM sada WHERE a>= 3 AND a<= 5 AND a>=2 AND b>=4;");
+		Query query = new Query("select * FROM sada;");
 		System.out.println(query.constraints);
-		
+		System.out.println(query.projections);
 	}
 	//single step delta
 	public static Delta calculateSingleStepDelta(Query q1,Query q2){
