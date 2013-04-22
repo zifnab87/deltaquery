@@ -11,6 +11,10 @@ public class ConstraintRemovalDelta extends Delta {
 		return constraint;
 	}
 	
+	public boolean equals(Object other) {
+		return other.getClass().equals(getClass()) && ((ConstraintRemovalDelta) other).getConstraint().equals(constraint);
+	}
+	
 	public Query apply(Query source) {
 		return null;
 	}
