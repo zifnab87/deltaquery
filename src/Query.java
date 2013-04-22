@@ -92,12 +92,24 @@ public class Query {
 			 }
 			 for(int i=0; i< where.nbOperands(); i++){
 				 // (a >= 3 )
-				 ZExpression clause = (ZExpression) where.getOperand(i);
-				 String operator = clause.getOperator(); // >=
+				 String operator;
+				 String leftOperand;
+				 String rightOperand;
+				 if (where.getOperand(i) instanceof ZExpression){
+					 ZExpression clause = (ZExpression) where.getOperand(i);
+					 operator = clause.getOperator(); // >=
+					 leftOperand = ((ZConstant) clause.getOperand(0)).getValue();
+					 rightOperand = ((ZConstant) clause.getOperand(1)).getValue();
+				 }
+				 else {
+					 operator = where.getOperator();
+					 leftOperand = ((ZConstant) where.getOperand(0)).getValue();
+					 rightOperand = ((ZConstant) where.getOperand(1)).getValue();
+				 }
+				 
 				 
 				 // a , 3
-				 String leftOperand = ((ZConstant) clause.getOperand(0)).getValue();
-				 String rightOperand = ((ZConstant) clause.getOperand(1)).getValue();
+				 
 				 Constraint alreadyStoredDimension = this.getConstraintForDimension(new Dimension(leftOperand));
 				 if (operator.equals(">=")){
 					 if(alreadyStoredDimension == null){
@@ -116,10 +128,13 @@ public class Query {
 					 }
 				 }
 				 else if (operator.equals("=")){
-					 this.constraints.add(new Constraint(new Dimension(leftOperand)).setMin(rightOperand).setMax(rightOperand));
+					 if(alreadyStoredDimension == null){
+						 this.constraints.add(new Constraint(new Dimension(leftOperand)).setMin(rightOperand).setMax(rightOperand));
+				 
+					 }
+			 
 				 }
 			 }
-			 
 			 
 			
 		}
