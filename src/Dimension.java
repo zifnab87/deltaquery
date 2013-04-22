@@ -9,4 +9,9 @@ public class Dimension {
 	public String getField() {
 		return field;
 	}
+	
+	public String toString(){
+		return this.field;
+		
+	}
 }
