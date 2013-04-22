@@ -97,7 +97,7 @@ public abstract class Delta {
 						src_range = src_max - src_min;
 						dest_range = dest_max - dest_min;
 						dmin = dest_min - src_min;
-						dmax = dest_max - dest_min;
+						dmax = dest_max - src_max;
 					}
 					catch (NumberFormatException nfe) {
 						src_range = src_con.getMax().compareTo(src_con.getMin());
@@ -107,7 +107,7 @@ public abstract class Delta {
 					}
 					
 					// PanDelta
-					if (Math.abs(src_range - dest_range) < EPSILON) {
+					if (Math.abs(src_range - dest_range) < EPSILON && dmin > EPSILON) {
 						deltas.add(new PanDelta(source, destination, dest_con.getDimension(), String.valueOf(dmin)));
 					}
 					
@@ -117,7 +117,7 @@ public abstract class Delta {
 					}
 					
 					// WindowShrinkageDelta
-					else {
+					else if (src_range > dest_range){
 						deltas.add(new WindowShrinkageDelta(source, destination, dest_con.getDimension(), String.valueOf(dmin), String.valueOf(dmax)));
 					}
 					
