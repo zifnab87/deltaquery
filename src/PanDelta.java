@@ -1,14 +1,20 @@
 
 public class PanDelta extends Delta {
-	private Constraint constraint;
+	private Dimension dimension;
+	private String change;
 	
-	public PanDelta(Query source, Query destination, Constraint constraint) {
+	public PanDelta(Query source, Query destination, Dimension dimension, String change) {
 		super(source, destination);
-		this.constraint = constraint;
+		this.dimension = dimension;
+		this.change = change;
 	}
 	
-	public Constraint getConstraint() {
-		return constraint;
+	public Dimension getDimension() {
+		return dimension;
+	}
+	
+	public String getChange() {
+		return change;
 	}
 	
 	public Query apply(Query source) {

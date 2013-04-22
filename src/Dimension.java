@@ -9,4 +9,8 @@ public class Dimension {
 	public String getField() {
 		return field;
 	}
+	
+	public boolean equals(Object other) {
+		return other.getClass().equals(getClass()) && ((Dimension) other).getField().equals(field);
+	}
 }
