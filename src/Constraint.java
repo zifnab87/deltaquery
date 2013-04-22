@@ -38,5 +38,8 @@ public class Constraint {
 		return this;
 	}
 	
+	public String toString(){
+		return "Constraint("+dimension+",["+min+","+max+"])";
+	}
 	
 }

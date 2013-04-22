@@ -72,7 +72,7 @@ public class Query {
 		return null;
 	}
 	
-	private void prepareQuery(String queryString) throws ParseException{
+	public void prepareQuery(String queryString) throws ParseException{
 		ZqlParser zqlparser = new ZqlParser();
 		zqlparser.initParser(new ByteArrayInputStream( queryString.getBytes() ));
 		ZQuery queryz = new ZQuery();
@@ -87,7 +87,6 @@ public class Query {
 			 }
 			 Vector<ZFromItem> from = q.getFrom();  // FROM part of the query
 			 ZExpression where = (ZExpression)q.getWhere();  // WHERE part of the query
-			 //System.out.println(where);
 			 for(int i=0; i< where.nbOperands(); i++){
 				 // (a >= 3 )
 				 ZExpression clause = (ZExpression) where.getOperand(i);
@@ -96,9 +95,9 @@ public class Query {
 				 // a , 3
 				 String leftOperand = ((ZConstant) clause.getOperand(0)).getValue();
 				 String rightOperand = ((ZConstant) clause.getOperand(1)).getValue();
+				 Constraint alreadyStoredDimension = this.getConstraintForDimension(new Dimension(leftOperand));
 				 if (operator.equals(">=")){
-					 Constraint alreadyStoredDimension = this.getConstraintForDimension(new Dimension(leftOperand));
-					 if(alreadyStoredDimension !=null){
+					 if(alreadyStoredDimension == null){
 						 this.constraints.add(new Constraint(new Dimension(leftOperand)).setMin(rightOperand));
 					 }
 					 else {
@@ -106,19 +105,22 @@ public class Query {
 					 }
 				 }
 				 else if (operator.equals("<=")){
-					 Constraint alreadyStoredDimension = this.getConstraintForDimension(new Dimension(leftOperand));
-					 if(alreadyStoredDimension !=null){
+					 if(alreadyStoredDimension == null){
 						 this.constraints.add(new Constraint(new Dimension(leftOperand)).setMax(rightOperand));
 					 }
 					 else {
 						 alreadyStoredDimension.setMax(rightOperand);					 
 					 }
 				 }
+				 else if (operator.equals("=")){
+					 this.constraints.add(new Constraint(new Dimension(leftOperand)).setMin(rightOperand).setMax(rightOperand));
+				 }
 			 }
 			 
 			 
 			
 		}
+		
 	}
 	
 	/*public static HashSet<Dimension> extractProjections(Query q){
